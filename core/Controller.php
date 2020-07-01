@@ -9,12 +9,22 @@ class Controller
     var $id;
     var $controller;
     var $data;
+    var $params=array();
     function __construct($request)
     {
         $this->data=$request->data;
         $this->method=$request->method;
-        $this->id=isset($request->params[0])?$request->params[0]:null;
+
+        if(isset($request->params[0])){
+            $this->id=array_shift($request->params);
+            if(isset($request->params[0]))
+                $this->params=$request->params;
+        }
+        else{
+            $this->id=null;
+        }
         $this->controller=ucfirst($request->controller);
+
     }
     public function loadModel($name){
         $file=ROOT.DS.'model'.DS.$name.'.php';
@@ -33,7 +43,8 @@ class Controller
         print_r(json_encode($d));
     }
     function post(){
-        $this->loadModel($this->controller)->save($this->data);
+       $d['result']=$this->loadModel($this->controller)->save($this->data);
+        print_r(json_encode($d));
     }
     function put(){
         $this->loadModel($this->controller)->save($this->data);

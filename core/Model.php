@@ -89,9 +89,9 @@
         $pre->execute($d);
 
         if($action=='insert'){
-            $this->id=$this->db->lastInsertId();
-            $result[$this->primaryKey]=$this->id;
-            print_r(json_encode($result));
+            return $this->db->lastInsertId();
+            /*$result[$this->primaryKey]=$this->id;
+            print_r(json_encode($result));*/
         }
 
 

@@ -12,13 +12,12 @@ class Dispatcher
 
         $controller=$this->loadController();
         call_user_func_array(array($controller,strtolower($this->request->method)), $this->request->params);
-        //print_r($controller);
+
     }
 
     function loadController(){
         $name=ucfirst($this->request->controller).'Controller';
         $file= ROOT.DS.'controller'.DS.$name.'.php';
-        //require $file;
         if (file_exists($file)) {
             //require "must_have.php";
             require $file;
