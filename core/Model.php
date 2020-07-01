@@ -57,5 +57,47 @@
         $this->db->query($sql);
     }
 
+    public function save($data){
+        $key=$this->primaryKey;
+        $fields=array();
+        $d=array();
+
+        foreach ($data as $k => $value) {
+            # code...
+
+            if($k!=$this->primaryKey){
+                $fields[]= "$k=:$k";
+                $d[":$k"]=$value;
+            }
+            elseif(!empty($value)){
+                $d[":$k"]=$value;
+            }
+        }
+
+        if(isset($data->$key) && !empty($data->$key)){
+
+            $sql='UPDATE '.$this->table.' SET '.implode(',', $fields).' WHERE '.$key.'=:'.$key;
+            $this->id=$data->$key;
+            $action='update';
+        }
+        else{
+
+            $sql='INSERT INTO '.$this->table.' SET '.implode(',', $fields);
+            $action='insert';
+        }
+        $pre=$this->db->prepare($sql);
+        $pre->execute($d);
+
+        if($action=='insert'){
+            $this->id=$this->db->lastInsertId();
+            $result[$this->primaryKey]=$this->id;
+            print_r(json_encode($result));
+        }
+
+
+
+
+    }
+
 
 }
