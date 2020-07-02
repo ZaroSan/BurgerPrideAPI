@@ -1,5 +1,5 @@
 <?php class Model{
-    public $conf='local';
+    public $conf;
     static $connections = array();
     public $table= false;
     public $db;
@@ -10,6 +10,7 @@
         if($this->table === false){
             $this->table = strtolower(get_class($this)).'s';
         }
+        $this->conf=Conf::$confDB;
         $conf=Conf::$databases[$this->conf];
         if(isset(Model::$connections[$this->conf])){
             $this->db=Model::$connections[$this->conf];

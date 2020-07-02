@@ -11,6 +11,7 @@ class Conf{
             'password'=>'password'
         )
     );
+    static $confDB='local';
 }
 
 
