@@ -37,7 +37,7 @@ class Controller
     }
     function get(){
         if(!isset($this->id))
-            $d['list']=$this->loadModel($this->controller)->readAll();
+            $d[$this->controller.'s']=$this->loadModel($this->controller)->readAll();
         else
             $d[$this->controller]=$this->loadModel($this->controller)->readFirst($this->id);
         print_r(json_encode($d));
