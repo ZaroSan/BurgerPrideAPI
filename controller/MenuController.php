@@ -41,14 +41,15 @@ class MenuController extends Controller
         }
         else{
             $d['Menu']=$this->loadModel('Menu')->readFirst($this->id);
+
             if($this->drink){
-                $d['Menu']['Drink']=$this->loadModel('Drink')->readFirst($this->id);
+                $d['Menu']['Drink']=$this->loadModel('Drink')->readFirst($d['Menu'][0]->id_drink);
             }
             if($this->sandwich){
-                $d['Menu']['Sandwich']=$this->loadModel('Sandwich')->readFirst($this->id);
+                $d['Menu']['Sandwich']=$this->loadModel('Sandwich')->readFirst($d['Menu'][0]->id_sandwich);
             }
             if($this->accompaniment){
-                $d['Menu']['Accompaniment']=$this->loadModel('Accompaniment')->readFirst($this->id);
+                $d['Menu']['Accompaniment']=$this->loadModel('Accompaniment')->readFirst($d['Menu'][0]->id_accompaniment);
             }
             print_r(json_encode($d));
         }
