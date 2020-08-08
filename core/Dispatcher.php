@@ -25,7 +25,9 @@
             else
             {
                 //return $this->error('not found : '.$this->request->controller);
-                return 'error';
+                InternalError::$code = 404;
+                InternalError::$message = "Not Found";
+                return 'InternalError';
             }
             return new $name($this->request);
         }
