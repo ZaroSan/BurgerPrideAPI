@@ -2,7 +2,7 @@
 
 require 'functions.php';
 require 'Router.php';
-require ROOT.DS.'config'.DS.'conf.php';
+require ROOT.DS.'config'.DS.'Conf.php';
 
 
 require 'Request.php';
