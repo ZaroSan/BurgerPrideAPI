@@ -20,7 +20,7 @@
 
     function check_recaptcha($response, $secret = null) {
         if ($secret == null) {
-            $secret = Conf::$recaptcha[Conf::$defaultRecaptcha];
+            $secret = Conf::$recaptcha[Conf::$defaultRecaptcha]['secret'];
         }
 
         $parameters = array(
