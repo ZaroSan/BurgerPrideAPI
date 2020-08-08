@@ -5,10 +5,10 @@
 
         static function display()
         {
-            header('HTTP/1.0 '.InternalError::$code.' '.InternalError::$code);
+            header('HTTP/1.0 '.self::$code.' '.self::$message);
             echo json_encode(array(
-                'code' => InternalError::$code,
-                'message' => InternalError::$message
+                'code' => self::$code,
+                'message' => self::$message
             ));
         }
 
