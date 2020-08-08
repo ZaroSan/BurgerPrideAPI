@@ -1,16 +1,15 @@
 <?php
-
-
-class Request
-{
-    var $url;
-    var $method;
-    var $data;
-    function __construct()
+    class Request
     {
-        $this->method=$_SERVER['REQUEST_METHOD'];
-        $this->url=isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:'/';
-        $this->data=json_decode(file_get_contents("php://input"));
-    }
+        public $url;
+        public $method;
+        public $data;
 
-}
+        function __construct()
+        {
+            $this->method = $_SERVER['REQUEST_METHOD'];
+            $this->url = $_SERVER['QUERY_STRING'] ?? $_SERVER['PATH_INFO'] ?? '/';
+            $this->data = json_decode(file_get_contents('php://input'));
+        }
+
+    }
