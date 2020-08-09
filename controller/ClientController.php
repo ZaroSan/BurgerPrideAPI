@@ -67,4 +67,10 @@
                 InternalError::display();
             }
         }
+
+        function put()
+        {
+            # Not implemented...
+            InternalError::display();
+        }
     }
