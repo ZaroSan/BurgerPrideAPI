@@ -1,5 +1,5 @@
 <?php
-    function debug($var){
+    function debug($var) {
         if(Conf::$debug >0){
             $debug = debug_backtrace();
 
@@ -42,4 +42,20 @@
         $r = json_decode($response, true);
 
         return $r['success'];
+    }
+
+    function generate_salt($length = 8) {
+        if (!is_numeric($length)) {
+            $length = 8;
+        }
+        $dico = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_=:';
+        $str = "";
+        for ($i=0; $i < $length; $i++) {
+            $str.=$dico[rand(0, strlen($dico)-1)];
+        }
+        return $str;
+    }
+
+    function is_email($email) {
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
