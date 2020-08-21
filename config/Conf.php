@@ -2,6 +2,11 @@
     class Conf {
         static $debug = 1;
 
+        static $jwt = array(
+            'secret' => 'your-256-bit-secret',
+            'algo' => 'HS256'
+        );
+
         static $databases = array(
             'local' => array(
             'host' => 'localhost',
