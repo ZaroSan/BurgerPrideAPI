@@ -43,11 +43,19 @@
 
         function get()
         {
-            if(!isset($this->id))
+            /*if(!isset($this->id))
                 $d[$this->controller.'s']=$this->loadModel($this->controller)->readAll();
             else
                 $d[$this->controller]=$this->loadModel($this->controller)->readFirst($this->id);
-            print_r(json_encode($d));
+            print_r(json_encode($d));*/
+            if (!isset($this->id))
+            {
+                print_r(json_encode($this->loadModel($this->controller)->readAll()));
+            }
+            else
+            {
+                print_r(json_encode($this->loadModel($this->controller)->readFirst($this->id)));
+            }
         }
 
         function post()
